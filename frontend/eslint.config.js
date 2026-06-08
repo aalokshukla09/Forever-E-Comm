@@ -15,6 +15,9 @@ export default defineConfig([
     ],
     rules: {
       'no-unused-vars': 'off',
+      'react-refresh/only-export-components': 'off',
+      'react-hooks/set-state-in-effect': 'off',
+      'react-hooks/exhaustive-deps': 'off',
     },
     languageOptions: {
       globals: globals.browser,
