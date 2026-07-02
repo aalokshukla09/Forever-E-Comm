@@ -12,6 +12,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import SearchBar from './components/SearchBar'
 import { ToastContainer } from 'react-toastify'
+import OrderDetails from './pages/OrderDetails'
 
 export const App = () => {
   const location = useLocation();
@@ -30,6 +31,8 @@ export const App = () => {
           <Route path='/orders' element={<Orders />} />
           <Route path='/place-order' element={<PlaceOrder />} />
           <Route path='/product/:productId' element={<Product />} />
+          <Route path="/orders/:orderId/:itemId" element={<OrderDetails />} />
+ 
       </Routes>
       {location.pathname !== "/login" ? <Footer /> : null}
     </div>
