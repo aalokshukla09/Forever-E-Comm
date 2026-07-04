@@ -17,7 +17,12 @@ connectDB();
 connectCloudinary();
 
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://forever-e-comm.vercel.app/",
+    credentials: true,
+  })
+);
 
 app.use("/api/user", userRouter);
 app.use("/api/product", productRouter);
