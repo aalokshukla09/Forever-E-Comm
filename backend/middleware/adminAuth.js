@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken'
+import adminModel from '../models/adminModel.js'
 
 const adminAuth = async (req, res, next) => {
     try {
@@ -7,10 +8,14 @@ const adminAuth = async (req, res, next) => {
             return res.json({success : false, message: "Not Authorized Login Again"})
         }
         const token_decode = jwt.verify(token, process.env.JWT_SECRET);
-        if(token_decode !== process.env.ADMIN_EMAIL + process.env.ADMIN_PASSWORD) {
-            return res.json({success : false, message: "Not Authorized Login Again"})
+
+        const admin = await adminModel.findById(token_decode.id).select("-password");
+        if (!admin) {
+            return res.json({ success: false, message: "Not Authorized Login Again" })
         }
-        next()
+
+        req.admin = admin
+        next() 
     }
     catch (error){
         console.log(error)
