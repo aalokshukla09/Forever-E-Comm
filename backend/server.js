@@ -19,7 +19,11 @@ connectCloudinary();
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://forever-e-comm.vercel.app/",
+    origin: [
+      "https://forever-e-comm.vercel.app",
+      "https://forever-e-comm-admin.vercel.app", // your actual admin URL
+      "http://localhost:5173" // for local dev, optional
+    ],
     credentials: true,
   })
 );
